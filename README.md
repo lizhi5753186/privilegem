@@ -15,12 +15,12 @@ File -> Import Project -> select privilegem folder -> create project form existi
 项目运行效果
  =
 首页运行效果
- =
+ -
 ![images](https://github.com/lizhi5753186/privilegem/blob/master/screen/Index.png)
 
 
 用户列表运行效果
- =
+ -
 ![images](https://github.com/lizhi5753186/privilegem/blob/master/screen/%E7%94%A8%E6%88%B7%E5%88%97%E8%A1%A8.png)
 
 联系：
