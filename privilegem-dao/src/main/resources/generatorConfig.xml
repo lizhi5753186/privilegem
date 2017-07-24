@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+  
+<generatorConfiguration>
+    <!-- 配置文件路径 -->
+    <properties url="${mybatis.generator.generatorConfig.properties}"/>
+    <!--数据库驱动包路径 -->
+    <classPathEntry location="${drive.class.path}"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">  
+        <commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->  
+			<property name="suppressAllComments" value="true" />
+			<!-- 此属性用于指定在生成的注释是否将包括MBG代时间戳 -->
+            <property name="suppressDate" value="true" />
+        </commentGenerator>
+
+        <!--数据库连接信息 -->
+        <jdbcConnection driverClass="${jdbc.driver}" connectionURL="${jdbc.url}" userId="${jdbc.username}"
+                        password="${jdbc.password}">
+        </jdbcConnection>
+  
+        <javaTypeResolver>  
+            <property name="forceBigDecimals" value="false" />  
+        </javaTypeResolver>
+
+		<!-- targetProject:自动生成代码的位置 -->
+
+        <!--生成的model 包路径 -->
+        <javaModelGenerator targetPackage="${model.package}" targetProject="${target.project}">
+            <property name="enableSubPackages" value="ture"/>
+            <property name="trimStrings" value="false"/>
+        </javaModelGenerator>
+
+        <!--生成xml mapper文件 路径 -->
+        <sqlMapGenerator targetPackage="${xml.mapper.package}" targetProject="${target.project}">
+            <property name="enableSubPackages" value="ture"/>
+        </sqlMapGenerator>
+
+        <!-- 生成的Dao接口 的包路径 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="${dao.package}" targetProject="${target.project}">
+            <property name="enableSubPackages" value="ture"/>
+        </javaClientGenerator>
+  
+		<!--<ignoreColumn column="被忽略的字段的名字" />-->
+        <!--对应数据库表名 -->
+        <table tableName="permission" domainObjectName="Permission" enableDeleteByExample = "false"
+               enableCountByExample = "false" enableUpdateByExample = "false"			enableSelectByExample = "false" selectByExampleQueryId = "false" />
+        <table tableName="user" domainObjectName="User" enableDeleteByExample = "false" enableCountByExample = "false" enableUpdateByExample = "false"			enableSelectByExample = "false" selectByExampleQueryId = "false" />
+        <table tableName="role" domainObjectName="Role" enableDeleteByExample = "false" enableCountByExample = "false" enableUpdateByExample = "false"			enableSelectByExample = "false" selectByExampleQueryId = "false" />
+        <table tableName="role_permission" domainObjectName="RolePermission" enableDeleteByExample = "false"
+               enableCountByExample = "false" enableUpdateByExample = "false"			enableSelectByExample = "false" selectByExampleQueryId = "false" />
+        <table tableName="user_role" domainObjectName="UserRole" enableDeleteByExample = "false" enableCountByExample = "false" enableUpdateByExample = "false"			enableSelectByExample = "false" selectByExampleQueryId = "false" />
+    </context>
+</generatorConfiguration>  

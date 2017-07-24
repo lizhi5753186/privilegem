@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="privilegem-front:war">
+    <output-path>$PROJECT_DIR$/privilegem-front/target</output-path>
+    <root id="archive" name="privilegem-front-1.0.0.war">
+      <element id="artifact" artifact-name="privilegem-front:war exploded" />
+    </root>
+  </artifact>
+</component>

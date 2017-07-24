@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lz.privilegem.mapper.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.lz.privilegem.entity.Role" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, remark, create_person, create_date, update_person, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lz.privilegem.entity.Role" >
+    insert into role (id, name, remark, 
+      create_person, create_date, update_person, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createPerson,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lz.privilegem.entity.Role" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createPerson != null" >
+        create_person,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updatePerson != null" >
+        update_person,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lz.privilegem.entity.Role" >
+    update role
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lz.privilegem.entity.Role" >
+    update role
+    set name = #{name,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 以上是为了节约开发时间，使用MyBatisGenerator生成的代码-->
+  <!-- 以下是针对不足功能，添加的代码  -->
+
+  <sql id="where">
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <if test="name!=null and name!=''">
+        and r.name like CONCAT(#{name},'%')
+      </if>
+    </trim>
+  </sql>
+  <sql id="orderby">
+    order by r.id desc
+  </sql>
+  <delete id="deleteRoleById" parameterType="java.lang.Integer">
+    delete r,prr
+    from role r
+    left join role_permission prr on r.id=prr.role_id
+    where r.id=#{id};
+  </delete>
+
+  <insert id="assignResources">
+    insert into role_permission(role_id,permisson_id)
+    values
+    <foreach collection="permissionIds" index="index" item="item" open="" separator="," close="">
+      (#{roleId},#{item})
+    </foreach>
+    ;
+  </insert>
+  <select id="getRoleTotalBySearch" parameterType="com.lz.privilegem.entity.RoleSearch" resultType="java.lang.Integer">
+    select count(0)
+    from p_role r
+    <include refid="where"/>
+  </select>
+  <!-- 这个方法虽然没有显示的书写limit，但是也是分页的，利用的MyBatis的RowBounds -->
+  <select id="getRoleListBySearch" parameterType="com.lz.privilegem.entity.RoleSearch" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from role r
+    <include refid="where"/>
+    <include refid="orderby"/>
+  </select>
+  <select id="isUsedByUser" parameterType="java.lang.Integer" resultType="java.lang.Boolean">
+    select exists(select 1 from user_role pur where pur.role_id=#{roleId} limit 1);
+  </select>
+
+  <select id="getRoleListByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from role r
+    inner join user_role pur on r.id=pur.role_id
+    where pur.user_id=#{userId}
+  </select>
+  <select id="getRoleList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from role r
+  </select>
+</mapper>

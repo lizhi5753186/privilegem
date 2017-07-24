@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="privilegem-dao" />
+        <module name="privilegem-entity" />
+        <module name="privilegem-front" />
+        <module name="privilegem-service" />
+        <module name="privilegem-servicecontract" />
+        <module name="privilegemApplication" />
+        <module name="privilegemdomain" />
+        <module name="privilegemfront" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="privilegem" target="1.5" />
+      <module name="privilegem-dao" target="1.5" />
+      <module name="privilegem-entity" target="1.5" />
+      <module name="privilegem-front" target="1.5" />
+      <module name="privilegem-service" target="1.5" />
+      <module name="privilegem-servicecontract" target="1.5" />
+      <module name="privilegemApplication" target="1.5" />
+      <module name="privilegemdomain" target="1.5" />
+      <module name="privilegemfront" target="1.5" />
+      <module name="privilegemrepositories" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

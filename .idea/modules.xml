@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/privilegem.iml" filepath="$PROJECT_DIR$/privilegem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/privilegem-dao/privilegem-dao.iml" filepath="$PROJECT_DIR$/privilegem-dao/privilegem-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/privilegem-entity/privilegem-entity.iml" filepath="$PROJECT_DIR$/privilegem-entity/privilegem-entity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/privilegem-front/privilegem-front.iml" filepath="$PROJECT_DIR$/privilegem-front/privilegem-front.iml" />
+      <module fileurl="file://$PROJECT_DIR$/privilegem-service/privilegem-service.iml" filepath="$PROJECT_DIR$/privilegem-service/privilegem-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/privilegem-servicecontract/privilegem-servicecontract.iml" filepath="$PROJECT_DIR$/privilegem-servicecontract/privilegem-servicecontract.iml" />
+    </modules>
+  </component>
+</project>
